@@ -55,11 +55,6 @@ const ThoughtBox = () => {
     return currentWordList[currentWordList.length - 1];
   };
 
-  // const handleAnimationEnd = animationEndEvent => {
-  //   console.log("hit");
-  //   debugger;
-  // };
-
   return (
     <div className='ThoughtBox-container mx-auto'>
       <input
@@ -72,9 +67,6 @@ const ThoughtBox = () => {
         const { word, id } = fallingWordObj;
         return <FallingWord word={word} key={id} id={id} deleteFallingWord={deleteFallingWord} />;
       })}
-      {/* <span className='ThoughtBox-falling-word' onAnimationEnd={handleAnimationEnd}>
-        {currentWord}
-      </span> */}
     </div>
   );
 };
