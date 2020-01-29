@@ -3,3 +3,4 @@
 - Add twinkles
 - Add intro dialogue
 - Add input box art
+- Try to fix rerenders on input change
