@@ -8,7 +8,7 @@ const MusicMuteButton = props => {
     const [audioIsOn, setAudioIsOn] = useState(true);
 
     useEffect(() => {
-        audioIsOn ? audio.play() : audio.pause();
+        // audioIsOn ? audio.play() : audio.pause();
     }, [audioIsOn, audio]);
 
     const toggleMusic = () => {
