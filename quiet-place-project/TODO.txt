@@ -1,0 +1,5 @@
+- Fix offset being messed up after maxing out a certain amount of characters
+- Add volume slider
+- Add twinkles
+- Add intro dialogue
+- Add input box art
