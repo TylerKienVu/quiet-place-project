@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import crumble1 from "../../assets/crumble1.mp3";
 import crumble2 from "../../assets/crumble2.mp3";
@@ -18,6 +18,11 @@ const ThoughtBox = () => {
   const [inputValue, setInputValue] = useState("");
   const [fallingWords, setFallingWords] = useState([]);
   const measuringContainerRef = useRef(null);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   const handleKeyDown = keyDownEvent => {
     if (keyDownEvent.key === "Enter") {
@@ -36,19 +41,17 @@ const ThoughtBox = () => {
   };
 
   const addFallingWord = word => {
+    const id = `${word}-${new Date().getTime()}`;
     // This determines where the word will start falling
     const offsetWidth = measuringContainerRef.current.offsetWidth;
 
-    setFallingWords([
-      ...fallingWords,
-      { word: word, id: `${word}-${new Date().getTime()}`, offsetWidth: offsetWidth }
-    ]);
+    setFallingWords([...fallingWords, { word: word, id: id, offsetWidth: offsetWidth }]);
   };
 
   const deleteFallingWord = fallingWordId => {
     setFallingWords(
-      fallingWords.filter(fallingWordObj => {
-        const { id } = fallingWordObj;
+      fallingWords.filter(fallingWord => {
+        const { id } = fallingWord;
         return fallingWordId !== id;
       })
     );
@@ -62,13 +65,13 @@ const ThoughtBox = () => {
   return (
     <div className='ThoughtBox-container mx-auto'>
       <div className='ThoughtBox-falling-word-anchor'>
-        {fallingWords.map(fallingWordObj => {
-          const { word, id, offsetWidth } = fallingWordObj;
+        {fallingWords.map(fallingWord => {
+          const { word, id, offsetWidth } = fallingWord;
           return (
             <FallingWord
               word={word}
-              key={id}
               id={id}
+              key={id}
               offsetWidth={offsetWidth}
               deleteFallingWord={deleteFallingWord}
             />
@@ -76,6 +79,7 @@ const ThoughtBox = () => {
         })}
       </div>
       <input
+        ref={inputRef}
         className='ThoughtBox-textbox'
         value={inputValue}
         onChange={handleChange}

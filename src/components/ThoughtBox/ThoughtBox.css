@@ -16,7 +16,7 @@
 
 .ThoughtBox-input-measuring-container {
   width: auto;
-  display: inline-block;
+  display: block;
   visibility: hidden;
   position: fixed;
   overflow: auto;
