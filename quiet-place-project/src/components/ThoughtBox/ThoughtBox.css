@@ -14,30 +14,17 @@
   outline: none;
 }
 
-/* .ThoughtBox-falling-word {
+.ThoughtBox-input-measuring-container {
+  width: auto;
   display: inline-block;
-  animation: falling 6s cubic-bezier(0.4, 0.03, 0.67, 0.15);
-  color: white;
+  visibility: hidden;
+  position: fixed;
+  overflow: auto;
 }
 
-@keyframes falling {
-  0% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-  }
-
-  100% {
-    transform: translate3d(0px, 1000px, 0) rotate(260deg);
-    opacity: 0;
-  }
+.ThoughtBox-falling-word-anchor {
+  position: relative;
+  display: inline-block;
+  bottom: 19px;
+  left: 8px;
 }
-
-@keyframes falling2 {
-  0% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-  }
-
-  100% {
-    transform: translate3d(0px, 1000px, 0) rotate(-260deg);
-    opacity: 0;
-  }
-} */

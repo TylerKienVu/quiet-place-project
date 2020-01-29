@@ -1,11 +1,26 @@
 .FallingWord-falling-word {
   display: inline-block;
-  animation: falling 6s cubic-bezier(0.4, 0.03, 0.67, 0.15);
   color: white;
   position: absolute;
 }
 
-@keyframes falling {
+.FallingWord-falling1 {
+  animation: falling1 6s cubic-bezier(0.4, 0.03, 0.67, 0.15);
+}
+
+.FallingWord-falling2 {
+  animation: falling2 6s cubic-bezier(0.4, 0.03, 0.67, 0.15);
+}
+
+.FallingWord-word-measuring-container {
+  width: auto;
+  display: inline-block;
+  visibility: hidden;
+  position: fixed;
+  overflow: auto;
+}
+
+@keyframes falling1 {
   0% {
     transform: translate3d(0, 0, 0) rotate(0deg);
   }

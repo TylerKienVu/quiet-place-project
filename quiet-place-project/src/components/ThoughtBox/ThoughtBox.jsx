@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import crumble1 from "../../assets/crumble1.mp3";
 import crumble2 from "../../assets/crumble2.mp3";
 import crumble3 from "../../assets/crumble3.mp3";
 import FallingWord from "../FallingWord/FallingWord";
+import { randomNumberInRange } from "../../util/generalUtils";
 
 import "./ThoughtBox.css";
 
@@ -13,13 +14,10 @@ crumbleAudioList.forEach(audioFile => {
   audioFile.volume = 0.5;
 });
 
-const randomNumberInRange = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
-
 const ThoughtBox = () => {
   const [inputValue, setInputValue] = useState("");
   const [fallingWords, setFallingWords] = useState([]);
+  const measuringContainerRef = useRef(null);
 
   const handleKeyDown = keyDownEvent => {
     if (keyDownEvent.key === "Enter") {
@@ -38,7 +36,13 @@ const ThoughtBox = () => {
   };
 
   const addFallingWord = word => {
-    setFallingWords([...fallingWords, { word: word, id: `${word}-${new Date().getTime()}` }]);
+    // This determines where the word will start falling
+    const offsetWidth = measuringContainerRef.current.offsetWidth;
+
+    setFallingWords([
+      ...fallingWords,
+      { word: word, id: `${word}-${new Date().getTime()}`, offsetWidth: offsetWidth }
+    ]);
   };
 
   const deleteFallingWord = fallingWordId => {
@@ -57,16 +61,29 @@ const ThoughtBox = () => {
 
   return (
     <div className='ThoughtBox-container mx-auto'>
+      <div className='ThoughtBox-falling-word-anchor'>
+        {fallingWords.map(fallingWordObj => {
+          const { word, id, offsetWidth } = fallingWordObj;
+          return (
+            <FallingWord
+              word={word}
+              key={id}
+              id={id}
+              offsetWidth={offsetWidth}
+              deleteFallingWord={deleteFallingWord}
+            />
+          );
+        })}
+      </div>
       <input
         className='ThoughtBox-textbox'
         value={inputValue}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
-      {fallingWords.map(fallingWordObj => {
-        const { word, id } = fallingWordObj;
-        return <FallingWord word={word} key={id} id={id} deleteFallingWord={deleteFallingWord} />;
-      })}
+      <div ref={measuringContainerRef} className='ThoughtBox-input-measuring-container'>
+        {inputValue}
+      </div>
     </div>
   );
 };
