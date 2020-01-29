@@ -1,0 +1,10 @@
+.MusicMuteButton-container {
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    top: 95%;
+    left: 97%;
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+}
