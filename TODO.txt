@@ -1,6 +1,7 @@
-- Fix offset being messed up after maxing out a certain amount of characters
+- Add crumbles
 - Add volume slider
 - Add twinkles
 - Add intro dialogue
 - Add input box art
 - Try to fix rerenders on input change
+- Handle overflow for falling words if reach end of input
