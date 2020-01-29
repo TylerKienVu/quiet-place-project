@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+
+import crumble1 from "../../assets/crumble1.mp3";
+import crumble2 from "../../assets/crumble2.mp3";
+import crumble3 from "../../assets/crumble3.mp3";
+import FallingWord from "../FallingWord/FallingWord";
+
 import "./ThoughtBox.css";
-import crumble1 from "./crumble1.mp3";
-import crumble2 from "./crumble2.mp3";
-import crumble3 from "./crumble3.mp3";
 
 const crumbleAudioList = [new Audio(crumble1), new Audio(crumble2), new Audio(crumble3)];
 
@@ -16,7 +19,7 @@ const randomNumberInRange = (min, max) => {
 
 const ThoughtBox = () => {
   const [inputValue, setInputValue] = useState("");
-  const [currentWord, setCurrentWord] = useState("");
+  const [fallingWords, setFallingWords] = useState([]);
 
   const handleKeyDown = keyDownEvent => {
     if (keyDownEvent.key === "Enter") {
@@ -31,11 +34,21 @@ const ThoughtBox = () => {
 
   const triggerFallingWord = () => {
     crumbleAudioList[randomNumberInRange(0, crumbleAudioList.length - 1)].play();
-    setCurrentWord(getCurrentWord());
-    animateFallingWord();
+    addFallingWord(getCurrentWord());
   };
 
-  const animateFallingWord = () => {};
+  const addFallingWord = word => {
+    setFallingWords([...fallingWords, { word: word, id: `${word}-${new Date().getTime()}` }]);
+  };
+
+  const deleteFallingWord = fallingWordId => {
+    setFallingWords(
+      fallingWords.filter(fallingWordObj => {
+        const { id } = fallingWordObj;
+        return fallingWordId !== id;
+      })
+    );
+  };
 
   const getCurrentWord = () => {
     const currentWordList = inputValue.split(" ");
@@ -55,6 +68,10 @@ const ThoughtBox = () => {
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
+      {fallingWords.map(fallingWordObj => {
+        const { word, id } = fallingWordObj;
+        return <FallingWord word={word} key={id} id={id} deleteFallingWord={deleteFallingWord} />;
+      })}
       {/* <span className='ThoughtBox-falling-word' onAnimationEnd={handleAnimationEnd}>
         {currentWord}
       </span> */}

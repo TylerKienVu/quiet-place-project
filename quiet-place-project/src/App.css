@@ -1,6 +1,6 @@
 .App-main-container {
   text-align: center;
   height: 100vh;
-  background-image: url('./moon.jpg');
+  background-image: url("./assets/moon.jpg");
   background-position: 36% 17%;
 }
