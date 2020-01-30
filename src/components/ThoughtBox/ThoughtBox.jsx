@@ -84,6 +84,7 @@ const ThoughtBox = () => {
         value={inputValue}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
+        spellCheck={false}
       />
       <div ref={measuringContainerRef} className='ThoughtBox-input-measuring-container'>
         {inputValue}
