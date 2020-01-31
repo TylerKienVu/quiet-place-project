@@ -4,7 +4,7 @@ import crumble1 from "../../assets/crumble1.mp3";
 import crumble2 from "../../assets/crumble2.mp3";
 import crumble3 from "../../assets/crumble3.mp3";
 import FallingWord from "../FallingWord/FallingWord";
-import { randomNumberInRange } from "../../util/generalUtils";
+import { randomNumberInRange } from "../../util/general";
 
 import "./ThoughtBox.css";
 
