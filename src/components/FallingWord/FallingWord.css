@@ -1,15 +1,31 @@
-.FallingWord-falling-word {
+.FallingWord-falling {
   display: inline-block;
   color: white;
   position: absolute;
 }
 
-.FallingWord-falling1 {
+.FallingWord-word-falling1 {
   animation: falling1 6s cubic-bezier(0.4, 0.03, 0.67, 0.15);
 }
 
-.FallingWord-falling2 {
+.FallingWord-word-falling2 {
   animation: falling2 6s cubic-bezier(0.4, 0.03, 0.67, 0.15);
+}
+
+.FallingWord-crumble-falling3 {
+  animation: falling3 6s cubic-bezier(0.4, 0.03, 0.67, 0.15);
+}
+
+.FallingWord-crumble-falling4 {
+  animation: falling4 6s cubic-bezier(0.4, 0.03, 0.67, 0.15);
+}
+
+.FallingWord-crumble-falling5 {
+  animation: falling5 6s cubic-bezier(0.4, 0.03, 0.67, 0.15);
+}
+
+.FallingWord-crumble-falling6 {
+  animation: falling6 6s cubic-bezier(0.4, 0.03, 0.67, 0.15);
 }
 
 .FallingWord-word-measuring-container {
@@ -19,6 +35,8 @@
   position: fixed;
   overflow: auto;
 }
+
+/*Words falling animations*/
 
 @keyframes falling1 {
   0% {
@@ -38,6 +56,52 @@
 
   100% {
     transform: translate3d(0px, 1000px, 0) rotate(-260deg);
+    opacity: 0;
+  }
+}
+
+/*Crumbles falling animations*/
+
+@keyframes falling3 {
+  0% {
+    transform: translate3d(5px, 0, 0) rotate(0deg);
+  }
+
+  100% {
+    transform: translate3d(20px, 500px, 0) rotate(-260deg);
+    opacity: 0;
+  }
+}
+
+@keyframes falling4 {
+  0% {
+    transform: translate3d(-5px, 0, 0) rotate(0deg);
+  }
+
+  100% {
+    transform: translate3d(-20px, 700px, 0) rotate(-260deg);
+    opacity: 0;
+  }
+}
+
+@keyframes falling5 {
+  0% {
+    transform: translate3d(-5px, 0, 0) rotate(0deg);
+  }
+
+  100% {
+    transform: translate3d(-10px, 600px, 0) rotate(-260deg);
+    opacity: 0;
+  }
+}
+
+@keyframes falling6 {
+  0% {
+    transform: translate3d(10px, 0, 0) rotate(0deg);
+  }
+
+  100% {
+    transform: translate3d(20px, 400px, 0) rotate(-260deg);
     opacity: 0;
   }
 }
