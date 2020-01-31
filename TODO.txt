@@ -1,4 +1,3 @@
-- Add crumbles
 - Add volume slider
 - Add twinkles
 - Add intro dialogue
