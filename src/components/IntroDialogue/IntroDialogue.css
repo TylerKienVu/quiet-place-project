@@ -11,12 +11,14 @@
 }
 .IntroDialogue-line-enter-active {
   opacity: 1;
-  transition: opacity 200ms;
+  transition: opacity 500ms;
 }
 .IntroDialogue-line-exit {
   opacity: 1;
+  transform: translate3d(0, 0, 0);
 }
 .IntroDialogue-line-exit-active {
   opacity: 0;
-  transition: opacity 200ms;
+  transform: translate3d(0, 20px, 0);
+  transition: opacity 500ms, transform 500ms;
 }
