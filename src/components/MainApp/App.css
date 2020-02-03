@@ -5,6 +5,12 @@
   background-position: 36% 17%;
 }
 
+.App-footer {
+  position: absolute;
+  top: 95%;
+  left: 96%;
+}
+
 .App-ThoughtBox-enter {
   opacity: 0;
   transform: translate3d(0, -20px, 0);
