@@ -9,7 +9,6 @@ const audio = new Audio(soundtrack);
 audio.loop = true;
 audio.volume = 0.4;
 audio.muted = true;
-audio.autoplay = true;
 
 function App() {
   const [showThoughtBox, setShowThoughtBox] = useState(false);
