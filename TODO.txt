@@ -1,4 +1,5 @@
-- Remove thoughtbox after cutscene
+- Dont allow enter in thoughtbox until there is text
+- Fix spaces messing up thoughtbox
 - Add volume slider
 - Add twinkles
 - Add input box art
@@ -6,3 +7,4 @@
 - Handle overflow for falling words if reach end of input
 - Make crumbles fall in more spots
 - make falling word in dialogue persist
+- Add tooltips to footer buttons
