@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import ThoughtBox from "../ThoughtBox/ThoughtBox";
 import IntroDialogue from "../IntroDialogue/IntroDialogue";
 import soundtrack from "../../assets/quietPlaceProjectSoundtrack.mp3";
 import MusicMuteButton from "../MusicMuteButton/MusicMuteButton";
+import { CSSTransition } from "react-transition-group";
 
 const audio = new Audio(soundtrack);
 audio.loop = true;
@@ -12,6 +13,7 @@ audio.muted = true;
 
 function App() {
   const [showThoughtBox, setShowThoughtBox] = useState(false);
+  const [showDialogue, setShowDialogue] = useState(true);
   const [audioIsOn, setAudioIsOn] = useState(false);
 
   const toggleMusic = () => {
@@ -24,12 +26,27 @@ function App() {
     setAudioIsOn(!audioIsOn);
   };
 
+  const toggleThoughtBox = () => {
+    setShowThoughtBox(!showThoughtBox);
+  };
+
   return (
     <div className='container-fluid App-main-container p-0'>
-      {showThoughtBox ? (
+      <CSSTransition
+        appear
+        in={showThoughtBox}
+        timeout={500}
+        classNames='App-ThoughtBox'
+        unmountOnExit
+      >
         <ThoughtBox />
-      ) : (
-        <IntroDialogue setShowThoughtBox={setShowThoughtBox} toggleMusic={toggleMusic} />
+      </CSSTransition>
+      {showDialogue && (
+        <IntroDialogue
+          setShowThoughtBox={setShowThoughtBox}
+          toggleMusic={toggleMusic}
+          toggleThoughtBox={toggleThoughtBox}
+        />
       )}
       <MusicMuteButton audio={audio} audioIsOn={audioIsOn} toggleMusic={toggleMusic} />
     </div>
