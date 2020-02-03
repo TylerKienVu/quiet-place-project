@@ -19,7 +19,7 @@ const IntroDialogueFallingWord = () => {
           <FallingWord
             word='overloading'
             exactStartPos={EXACT_START_POS_PIXELS}
-            deleteFallingWord={() => setShowFallingWord(true)}
+            deleteFallingWord={() => setShowFallingWord(false)}
           />
         )}
       </div>

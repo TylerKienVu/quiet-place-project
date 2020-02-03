@@ -3,8 +3,10 @@ import DialogueLines from "../../constants/dialogueLines";
 import { CSSTransition } from "react-transition-group";
 import "./IntroDialogue.css";
 
+const LINE_INDEX_TO_SHOW_THOUGHTBOX = 8;
+
 const IntroDialogue = props => {
-  const { setShowThoughtBox, toggleMusic } = props;
+  const { setShowThoughtBox, toggleMusic, toggleThoughtBox } = props;
   const [currentDialogueLineIndex, setCurrentDialogueLineIndex] = useState(0);
 
   const [showLine, setShowLine] = useState(false);
@@ -23,16 +25,21 @@ const IntroDialogue = props => {
 
   const handleKeyDown = keyDownEvent => {
     // Hide the line to trigger exit animation
-    if (keyDownEvent.code === "Space") setShowLine(false);
-
-    if (currentDialogueLineIndex === 0) toggleMusic();
+    if (keyDownEvent.code === "Space") {
+      setShowLine(false);
+      if (currentDialogueLineIndex === 0) toggleMusic();
+    }
   };
 
   const handleLineExitedTransitionFinished = () => {
     // Activate next line
     setCurrentDialogueLineIndex(prevIndex => prevIndex + 1);
 
-    if (currentDialogueLineIndex + 1 === DialogueLines.length) setShowThoughtBox(true);
+    if (
+      currentDialogueLineIndex + 1 === LINE_INDEX_TO_SHOW_THOUGHTBOX ||
+      currentDialogueLineIndex + 1 === DialogueLines.length
+    )
+      setShowThoughtBox(true);
   };
 
   return (
@@ -43,7 +50,7 @@ const IntroDialogue = props => {
       <div className='d-flex flex-column justify-content-center' style={{ width: "1000px" }}>
         <CSSTransition
           in={showLine}
-          timeout={300}
+          timeout={500}
           classNames='IntroDialogue-line'
           onExited={handleLineExitedTransitionFinished}
         >
