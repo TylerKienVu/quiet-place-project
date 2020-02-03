@@ -14,21 +14,22 @@ crumbleAudioList.forEach(audioFile => {
   audioFile.volume = 0.5;
 });
 
-const ThoughtBox = () => {
+const ThoughtBox = props => {
+  const { focusThoughtBox } = props;
   const [inputValue, setInputValue] = useState("");
   const [fallingWords, setFallingWords] = useState([]);
   const measuringContainerRef = useRef(null);
   const inputRef = useRef(null);
 
   useEffect(() => {
-    inputRef.current.focus();
-  }, []);
+    focusThoughtBox ? inputRef.current.focus() : inputRef.current.blur();
+  }, [focusThoughtBox]);
 
   const handleKeyDown = keyDownEvent => {
-    if (keyDownEvent.key === "Enter") {
+    if (keyDownEvent.key === "Enter" && inputValue.trim() !== "") {
       triggerFallingWord();
       setInputValue("");
-    } else if (keyDownEvent.key === " ") triggerFallingWord();
+    } else if (keyDownEvent.key === " " && inputValue.trim() !== "") triggerFallingWord();
   };
 
   const handleChange = changeEvent => {
