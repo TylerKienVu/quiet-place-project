@@ -1,19 +1,16 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import "./FallingWord.css";
 import { randomNumberInRange, randomUniqueNumbersInRange } from "../../util/general";
+import {
+  FallingCrumbleAnimationClassNames,
+  FallingWordAnimationClassNames
+} from "../../constants/animationClassNames";
 
-const fallingWordAnimationClassNames = ["FallingWord-word-falling1", "FallingWord-word-falling2"];
-const fallingCrumbleAnimationClassNames = [
-  "FallingWord-crumble-falling3",
-  "FallingWord-crumble-falling4",
-  "FallingWord-crumble-falling5",
-  "FallingWord-crumble-falling6"
-];
 const MIN_NUM_OF_CRUMBLES = 1;
 const MAX_NUM_OF_CRUMBLES = 3;
 
 const FallingWord = props => {
-  const { word, id, offsetWidth, deleteFallingWord } = props;
+  const { word, id, offsetWidth, exactStartPos, deleteFallingWord } = props;
 
   const [animationClass, setAnimationClass] = useState(null);
   const [crumblesAnimationClasses, setCrumblesAnimationClasses] = useState([]);
@@ -21,11 +18,12 @@ const FallingWord = props => {
   const measuringContainerRef = useRef(null);
 
   // Calculates the starting position for the falling nodes
+  // current pos of cursor - length of word
   const calculateOffset = useCallback(() => {
-    return measuringContainerRef.current
-      ? offsetWidth - measuringContainerRef.current.offsetWidth
-      : null;
-  }, [offsetWidth]);
+    if (!measuringContainerRef) return null;
+
+    return exactStartPos ? exactStartPos : offsetWidth - measuringContainerRef.current.offsetWidth;
+  }, [offsetWidth, exactStartPos]);
 
   // Creates a list of crumble nodes to render
   // Note: Had to generate the list of components before render because when I was
@@ -52,14 +50,14 @@ const FallingWord = props => {
     // generate MIN_NUM_OF_CRUMBLES to MAX_NUM_OF_CRUMBLES unique animation indicies
     const crumbleAnimationIndicies = randomUniqueNumbersInRange(
       0,
-      fallingCrumbleAnimationClassNames.length - 1,
+      FallingCrumbleAnimationClassNames.length - 1,
       MIN_NUM_OF_CRUMBLES,
       MAX_NUM_OF_CRUMBLES
     );
 
     // Get the corresponding animations
     const crumbleAnimations = crumbleAnimationIndicies.map(
-      crumbleAnimationIndex => fallingCrumbleAnimationClassNames[crumbleAnimationIndex]
+      crumbleAnimationIndex => FallingCrumbleAnimationClassNames[crumbleAnimationIndex]
     );
 
     return generateCrumbleNodes(crumbleAnimations);
@@ -78,8 +76,8 @@ const FallingWord = props => {
   };
 
   const getRandomFallingAnimationClass = () => {
-    return fallingWordAnimationClassNames[
-      randomNumberInRange(0, fallingWordAnimationClassNames.length - 1)
+    return FallingWordAnimationClassNames[
+      randomNumberInRange(0, FallingWordAnimationClassNames.length - 1)
     ];
   };
 
