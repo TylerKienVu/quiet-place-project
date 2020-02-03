@@ -1,6 +1,8 @@
+- Remove thoughtbox after cutscene
 - Add volume slider
 - Add twinkles
-- Add intro dialogue
 - Add input box art
 - Try to fix rerenders on input change
 - Handle overflow for falling words if reach end of input
+- Make crumbles fall in more spots
+- make falling word in dialogue persist
