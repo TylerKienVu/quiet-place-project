@@ -5,3 +5,18 @@
   top: 55%;
   font-size: 25px;
 }
+
+.IntroDialogue-line-enter {
+  opacity: 0;
+}
+.IntroDialogue-line-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+.IntroDialogue-line-exit {
+  opacity: 1;
+}
+.IntroDialogue-line-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+}

@@ -3,10 +3,11 @@ import FallingWord from "../FallingWord/FallingWord";
 
 const fallingWordAnchorStyle = {
   position: "relative",
-  display: "inline-block"
+  display: "inline-block",
+  top: "8px"
 };
 
-const EXACT_START_POS_PIXELS = 381;
+const EXACT_START_POS_PIXELS = -117;
 
 const IntroDialogueFallingWord = () => {
   const [showFallingWord, setShowFallingWord] = useState(true);
