@@ -1,0 +1,7 @@
+.IntroDialogue-line-container {
+  position: absolute;
+  color: white;
+  width: 100%;
+  top: 55%;
+  font-size: 25px;
+}
